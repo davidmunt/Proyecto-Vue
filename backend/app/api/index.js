@@ -31,9 +31,7 @@ mongoose
   });
 
 require("../routes/user.router.js")(app);
-require("../routes/shoppingcart.router.js")(app);
-require("../routes/lastseen.router.js")(app);
-require("../routes/purchases.router.js")(app);
+require("../routes/vehiculo.routes.js")(app);
 
 app.listen(process.env.PORT, () => {
   console.log(`Servidor Express en el puerto ${process.env.PORT}`);

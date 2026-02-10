@@ -17,7 +17,7 @@ const tokenSchema = new mongoose.Schema(
     // Guardamos el tipo de usuario para agilizar filtros en el backend
     user_type: {
       type: String,
-      enum: ["admin", "client"],
+      enum: ["admin", "cliente"],
       required: true,
     },
     // Fecha de expiración (opcional, para limpieza automática)
