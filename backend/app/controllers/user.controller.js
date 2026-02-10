@@ -123,8 +123,60 @@ const getCurrentUser = asyncHandler(async (req, res) => {
   });
 });
 
+const getAllClientes = asyncHandler(async (req, res) => {
+  let clientes = await User.find({ user_type: "cliente" }).exec();
+
+  const ordenPrioridad = {
+    "en trámite": 1,
+    pendiente: 2,
+    resuelto: 3,
+    rechazado: 4,
+  };
+
+  clientes.sort((a, b) => {
+    return (ordenPrioridad[a.estado_resolucion] || 5) - (ordenPrioridad[b.estado_resolucion] || 5);
+  });
+
+  const clientesResponse = await Promise.all(clientes.map(async (c) => await c.toUserResponse()));
+
+  res.status(200).json({
+    total: clientesResponse.length,
+    clientes: clientesResponse,
+  });
+});
+
+const updateClienteEstado = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { nuevoEstado } = req.body;
+
+  const estadosValidos = ["pendiente", "en trámite", "resuelto", "rechazado"];
+  if (!estadosValidos.includes(nuevoEstado)) {
+    return res.status(400).json({ message: "Estado de resolución no válido" });
+  }
+
+  const cliente = await User.findById(id);
+
+  if (!cliente) {
+    return res.status(404).json({ message: "Usuario no encontrado" });
+  }
+
+  if (cliente.user_type !== "cliente") {
+    return res.status(403).json({ message: "No se puede modificar el estado de un administrador" });
+  }
+
+  cliente.estado_resolucion = nuevoEstado;
+  await cliente.save();
+
+  res.status(200).json({
+    message: `Estado actualizado a ${nuevoEstado} con éxito`,
+    user: await cliente.toUserResponse(),
+  });
+});
+
 module.exports = {
   registerUser,
   userLogin,
   getCurrentUser,
+  getAllClientes,
+  updateClienteEstado,
 };
