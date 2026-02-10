@@ -124,7 +124,15 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 });
 
 const getAllClientes = asyncHandler(async (req, res) => {
-  let clientes = await User.find({ user_type: "cliente" }).exec();
+  const { estado } = req.query;
+
+  let query = { user_type: "cliente" };
+
+  if (estado && estado !== "") {
+    query.estado_resolucion = estado;
+  }
+
+  let clientes = await User.find(query).exec();
 
   const ordenPrioridad = {
     "en trámite": 1,
