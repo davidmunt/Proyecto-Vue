@@ -16,6 +16,7 @@
 
 # --- Backend
 /backend/node_modules/
+/backend/package-lock.json
 /backend/.env
 /backend/npm-debug.log*
 /backend/.logs/
