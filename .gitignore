@@ -1,0 +1,21 @@
+# --- Frontend
+/gestion-cartel/node_modules/
+/gestion-cartel/dist/
+/gestion-cartel/npm-debug.log*
+/gestion-cartel/yarn-debug.log*
+/gestion-cartel/yarn-error.log*
+/gestion-cartel/.env
+/gestion-cartel/.env.local
+/gestion-cartel/.env.*.local
+/gestion-cartel/.vscode/
+/gestion-cartel/.idea/
+/gestion-cartel/*.suo
+/gestion-cartel/*.ntvs*
+/gestion-cartel/*.njsproj
+/gestion-cartel/*.sln
+
+# --- Backend
+/backend/node_modules/
+/backend/.env
+/backend/npm-debug.log*
+/backend/.logs/
