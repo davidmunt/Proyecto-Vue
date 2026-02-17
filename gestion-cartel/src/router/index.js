@@ -6,21 +6,21 @@ const routes = [
     name: "Home",
     component: () => import("../views/Home.vue"),
   },
-  {
-    path: "/registro-cliente",
-    name: "RegistroCliente",
-    component: () => import("../views/RegistroCliente.vue"),
-  },
-  {
-    path: "/registro-vehiculo",
-    name: "RegistroVehiculo",
-    component: () => import("../views/RegistroVehiculo.vue"),
-  },
-  {
-    path: "/admin",
-    name: "AdminPanel",
-    component: () => import("../views/AdminPanel.vue"),
-  },
+  // {
+  //   path: "/registro-cliente",
+  //   name: "RegistroCliente",
+  //   component: () => import("../views/RegistroCliente.vue"),
+  // },
+  // {
+  //   path: "/registro-vehiculo",
+  //   name: "RegistroVehiculo",
+  //   component: () => import("../views/RegistroVehiculo.vue"),
+  // },
+  // {
+  //   path: "/admin",
+  //   name: "AdminPanel",
+  //   component: () => import("../views/AdminPanel.vue"),
+  // },
 ];
 
 const router = createRouter({

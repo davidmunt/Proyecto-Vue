@@ -43,7 +43,6 @@ defineEmits(["update:modelValue"]);
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: white;
   font-size: 1rem;
   cursor: pointer;
 }
