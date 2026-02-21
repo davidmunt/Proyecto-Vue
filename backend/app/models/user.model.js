@@ -18,8 +18,6 @@ const userSchema = new mongoose.Schema(
       unique: true,
       match: [/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i, "DNI no válido"],
     },
-    nombre: { type: String, required: true },
-    apellidos: { type: String, required: true },
     telefono: { type: String, required: true },
     email: {
       type: String,

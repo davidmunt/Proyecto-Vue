@@ -59,7 +59,6 @@ const onAction = (result) => {
 
 .btn-cancel {
   padding: 0.5rem 1rem;
-  background: #eee;
   border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;

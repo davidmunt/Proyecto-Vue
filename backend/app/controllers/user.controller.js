@@ -7,7 +7,7 @@ const Token = require("../models/token.model");
 const registerUser = asyncHandler(async (req, res) => {
   const { user } = req.body;
 
-  if (!user || !user.username || !user.password || !user.dni || !user.nombre || !user.apellidos || !user.email || !user.telefono) {
+  if (!user || !user.username || !user.password || !user.dni || !user.email || !user.telefono) {
     return res.status(400).json({ message: "Todos los campos (DNI, Nombre, Email, etc.) son requeridos" });
   }
 
@@ -31,8 +31,6 @@ const registerUser = asyncHandler(async (req, res) => {
     username: user.username,
     password: hashedPwd,
     dni: user.dni,
-    nombre: user.nombre,
-    apellidos: user.apellidos,
     email: user.email,
     telefono: user.telefono,
     user_type: "cliente",
