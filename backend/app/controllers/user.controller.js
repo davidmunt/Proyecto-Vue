@@ -153,10 +153,10 @@ const getAllClientes = asyncHandler(async (req, res) => {
 
 const updateClienteEstado = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { nuevoEstado } = req.body;
+  const { estado } = req.body;
 
   const estadosValidos = ["pendiente", "en trámite", "resuelto", "rechazado"];
-  if (!estadosValidos.includes(nuevoEstado)) {
+  if (!estadosValidos.includes(estado)) {
     return res.status(400).json({ message: "Estado de resolución no válido" });
   }
 
@@ -170,11 +170,11 @@ const updateClienteEstado = asyncHandler(async (req, res) => {
     return res.status(403).json({ message: "No se puede modificar el estado de un administrador" });
   }
 
-  cliente.estado_resolucion = nuevoEstado;
+  cliente.estado_resolucion = estado;
   await cliente.save();
 
   res.status(200).json({
-    message: `Estado actualizado a ${nuevoEstado} con éxito`,
+    message: `Estado actualizado a ${estado} con éxito`,
     user: await cliente.toUserResponse(),
   });
 });

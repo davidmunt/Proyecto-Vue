@@ -115,6 +115,8 @@ const deleteVehiculo = asyncHandler(async (req, res) => {
 const getVehiculosByUser = asyncHandler(async (req, res) => {
   const { userId } = req.params;
 
+  console.log(userId);
+
   if (req.userRole === "cliente" && req.userId.toString() !== userId) {
     return res.status(403).json({
       message: "No tienes permiso para ver los vehículos de otro usuario.",

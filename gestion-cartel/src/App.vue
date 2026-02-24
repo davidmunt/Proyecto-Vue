@@ -20,7 +20,7 @@ const handleLogout = () => {
     <header class="main-header">
       <div class="header-container">
         <router-link to="/" class="brand-link">
-          <h1 class="brand">Cártel Coches <span>España</span></h1>
+          <h1 class="brand">Cártel Coches</h1>
         </router-link>
 
         <nav class="main-nav">
@@ -29,7 +29,7 @@ const handleLogout = () => {
           </div>
 
           <div v-if="!isAuthenticated" class="auth-group">
-            <router-link to="/registro-cliente" class="login-btn"> Acceder / Registrarse </router-link>
+            <router-link to="/registro-cliente" class="login-btn"> Autenticarse </router-link>
           </div>
 
           <div v-else class="user-group">
