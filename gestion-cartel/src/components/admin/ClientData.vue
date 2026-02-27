@@ -26,6 +26,8 @@
 import { ref } from "vue";
 import { useClientsStore } from "../../store/users";
 import ListVehicles from "../vehicles/ListVehicles.vue";
+// IMPORTANTE: Importamos el helper
+import { sendStatusEmail } from "../../utils/mailHelper";
 
 const props = defineProps({
   client: { type: Object, required: true },
@@ -39,11 +41,18 @@ const estados = ["pendiente", "en trámite", "resuelto", "rechazado"];
 
 const updateState = async () => {
   loading.value = true;
+
+  // 1. Actualizamos en el backend principal (puerto 3033)
   const result = await clientsStore.updateClientState(props.client.id, currentState.value);
-  if (!result.success) {
+
+  if (result.success) {
+    // 2. Si hay éxito, enviamos el email (puerto 3000)
+    await sendStatusEmail(props.client.email, props.client.username, currentState.value);
+  } else {
     alert(result.error);
-    currentState.value = props.client.estado; // Revertir si falla
+    currentState.value = props.client.estado;
   }
+
   loading.value = false;
 };
 </script>

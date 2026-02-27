@@ -1,0 +1,19 @@
+services:
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+  vue:
+    build: .
+    container_name: vue-dev
+    working_dir: /app
+    volumes:
+      - ./gestion-cartel:/app
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && node js/server.js"
+    depends_on:
+      - mailhog
